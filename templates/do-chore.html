@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Do Chore</h2>
+
+<a href="/choredetail"><h3>Chore Name</h3></a>
+
+    <form method="post">
+      <label>
+        <div>Enter your name</div>
+        <input type="text" name="doer_name">
+      </label>
+      <br>
+      <br>
+      <br>
+      
+      <br>
+      <br>
+      <div class="error">{{error}}</div>
+      <br>
+      <input type="submit" value="Complete Chore">
+    </form>
+    <br>
+    <a href="/">Cancel</a>
+
+{% endblock %}

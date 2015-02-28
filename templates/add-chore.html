@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add a Chore</h2>
+
+    <form method="post">
+      <label>
+        <div>Chore Name</div>
+        <input type="text" name="chore_name" value="{{name}}">
+      </label>
+      <br>
+      <br>
+      <br>
+      <label>
+        <div>Chore Description</div>
+        <textarea name="chore_description">{{description}}</textarea>
+      </label>
+      <br>
+      <br>
+      <div class="error">{{error}}</div>
+      <br>
+      <input type="submit" value="Save Chore">
+    </form>
+    <br>
+    <a href="/">Cancel</a>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <br>
+  <br>
+  
+  <a href="/addchore"> + Add Chore</a>
+
+  <br>
+  <br>
+  <br>
+
+  {% for chore in chores %}
+    {{ chore.render() | safe }}
+    <br><br>
+  {% endfor %}
+
+{% endblock %}
