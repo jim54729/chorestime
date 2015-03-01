@@ -27,7 +27,7 @@ class BlogHandler(webapp2.RequestHandler):
 
 class ChoreFront(BlogHandler):
     def get(self):
-        chores = db.GqlQuery("select * from Chore order by created desc limit 10")
+        chores = db.GqlQuery("select * from Chore order by times_completed desc limit 10")
         self.render('front.html', chores = chores)
 
 class AddChore(BlogHandler):
@@ -40,8 +40,7 @@ class AddChore(BlogHandler):
 
         if name and description:
             # TODO - Implement error handling for duplicate chore 
-            chore = Chore(parent = blog_key(), 
-                          key_name = name,  
+            chore = Chore(key_name = name,  
                           name = name, 
                           description = description, 
                           times_completed = 0, 
@@ -57,33 +56,61 @@ class DoChore(BlogHandler):
         self.render('do-chore.html')
 
     def post(self):
-        doer_name = self.request.get('doer_name')
+        chore_name = self.request.get('chore_name')
+        doer = self.request.get('doer_name')
 
-        if doer_name:
-            # TODO - Update times_completed, last_doer, last_completed for the chore
+        if chore_name and doer:
+            # Grab chore from database
+            query = db.GqlQuery("SELECT * FROM Chore WHERE name = :1", chore_name)
+            chore = query.get()
+            # Update chore attributes
+            chore.times_completed += 1
+            chore.last_doer = doer
+            # Update chore in database and redirect user to updated front page
+            chore.put()  # chore.last_completed is automatically updated here by the Datastore
             self.redirect('/')
         else:
-            error = "Please enter your name!"
-            self.render("do-chore.html", doer_name = doer_name, error=error)
+            error = "Please provide chore name and your name!"
+            self.render("do-chore.html", chore_name = chore_name, doer_name = doer, error=error)
+
 
 class ChoreDetail(BlogHandler):
     def get(self):
-        self.render('chore-detail.html')
+        self.render('chore-detail-enter.html')
 
     def post(self):
-        doer_name = self.request.get('doer_name')
+        chore_name = self.request.get('chore_name')
 
-        if doer_name:
-            # TODO - Update times_completed, last_doer, 
-            # last_completed(done automatically) for the chore
+        if chore_name:
+            # Grab reference to user-specified chore from database 
+            query = db.GqlQuery("SELECT * FROM Chore WHERE name = :1", chore_name)
+            chore = query.get()
+            # Render chore-detail.html with chore info
+            self.render('chore-detail.html', chore = chore)
+        else:
+            error = "Please enter a chore name!"
+            self.render("chore-detail-enter.html", chore_name = chore_name, error=error)
+
+
+class RemoveChore(BlogHandler):
+    def get(self):
+        self.render('remove-chore.html')
+
+    def post(self):
+        chore_name = self.request.get('chore_name')
+
+        if chore_name:
+            # Grab reference to user-specified chore from database 
+            query = db.GqlQuery("SELECT * FROM Chore WHERE name = :1", chore_name)
+            chore = query.get()
+            # Delete chore from database and redirect user to updated front page
+            chore.delete()
             self.redirect('/')
         else:
-            error = "Please enter your name!"
-            self.render("do-chore.html", doer_name = doer_name, error=error)
+            error = "Please enter a chore name!"
+            self.render("remove-chore.html", chore_name = chore_name, error=error)
 
 
-def blog_key(name = 'default'):
-    return db.Key.from_path('blogs', name)
 
 class Chore(db.Model):
     name = db.StringProperty(required = True)
@@ -99,7 +126,8 @@ class Chore(db.Model):
 
 
 app = webapp2.WSGIApplication([('/', ChoreFront), 
-							   ('/addchore', AddChore),
+							   ('/addchore', AddChore), 
+                               ('/removechore', RemoveChore),
                                ('/dochore', DoChore), 
                                ('/choredetail', ChoreDetail)
 								], 

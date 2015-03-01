@@ -1,31 +1,15 @@
 <div class="chore">
   <div class="chore-heading">
     <div class="chore-title">
-      <a href="/choredetail">{{chore.name}}</a><a href="/dochore"> (Do chore)</a>
-    </div>
-
-    <div class="chore-description">
-      Description: {{chore.description}}
+      <a href="/choredetail">{{chore.name}}</a>
     </div>
 
     <div class="chore-completion-total">
       Times Completed: {{chore.times_completed}}
     </div>
 
-    <div class="chore-last-doer">
-      Last Completed By: {{chore.last_doer}}
-    </div>
-
-    <div class="chore-date-created">
-      First Created: {{chore.created.strftime("%b %d, %Y")}}
-    </div>
-
-    <div class="chore-date-last-completed">
-      Last Completed: {{chore.last_completed.strftime("%b %d, %Y")}}
-    </div>
-
-    <div class="chore-date-last-completed">
-      Identifier: {{chore.key().id_or_name()}}
+    <div class="chore-last-completed">
+      Last completed by {{chore.last_doer}} on {{chore.last_completed.strftime("%b %d, %Y")}}
     </div>
   </div>
 </div>

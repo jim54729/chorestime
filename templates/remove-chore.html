@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Remove Chore</h2>
+<br>
+<form method="post">
+      <label>
+        <div>Enter Chore Name</div>
+        <br>
+        <input type="text" name="chore_name">
+      </label>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="error">{{error}}</div>
+      <br>
+      <input type="submit" value="Remove Chore">
+</form>
+<br>
+<a href="/">Cancel</a>
+
+{% endblock %}

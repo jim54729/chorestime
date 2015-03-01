@@ -3,12 +3,17 @@
 {% block content %}
 <h2>Do Chore</h2>
 
-<a href="/choredetail"><h3>Chore Name</h3></a>
-
     <form method="post">
       <label>
-        <div>Enter your name</div>
-        <input type="text" name="doer_name">
+        <div>Enter Chore Name</div>
+        <input type="text" name="chore_name" value="{{chore_name}}">
+      </label>
+      <br>
+      <br>
+      <br>
+      <label>
+        <div>Enter Your Name</div>
+        <input type="text" name="doer_name" value="{{doer_name}}">
       </label>
       <br>
       <br>
