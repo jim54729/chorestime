@@ -20,3 +20,5 @@ Get date to be proper date according to user's timezone
 Hard refresh in order to display updated database
 
 Error handling for existing/non-existing chore names entered into form 
+
+Style the application 
