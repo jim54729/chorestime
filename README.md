@@ -11,4 +11,12 @@ Credit for this project's brilliance belongs to:
 
  Back End Engineer - <a href="https://github.com/jvojens2">Julian Farley</a>  (Time Invested So Far: 23 hrs)
 
+Future Changes to be Implemented: 
 
+Change navigation of app to make links more user friendly
+
+Get date to be proper date according to user's timezone 
+
+Hard refresh in order to display updated database
+
+Error handling for existing/non-existing chore names entered into form 
