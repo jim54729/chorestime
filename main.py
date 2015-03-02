@@ -111,7 +111,6 @@ class RemoveChore(BlogHandler):
             self.render("remove-chore.html", chore_name = chore_name, error=error)
 
 
-
 class Chore(db.Model):
     name = db.StringProperty(required = True)
     description = db.TextProperty(required = True)
