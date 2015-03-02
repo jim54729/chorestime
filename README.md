@@ -5,7 +5,7 @@ You may view the live version of this project <a href="http://chorestimemadison.
 
 Credit for this project's brilliance belongs to: 
 
- Front End Engineer - <a href="https://tomnesler55.wordpress.com/">Tom Nesler</a>  (Time Invested So Far: 1 hrs) 
+ Front End Engineer - <a href="https://tomnesler55.wordpress.com/">Tom Nesler</a>  (Time Invested So Far: 8 hrs) 
 
  Front End Engineer - <a href="https://plus.google.com/105587733820664495590/posts">Jim Schwetz</a>  (Time Invested So Far: 1 hrs)
 
