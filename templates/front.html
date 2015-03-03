@@ -2,18 +2,22 @@
 
 {% block content %}
 
-  <br>
-  <br>
-  <a href="/dochore">Do Chore</a>
-  &nbsp;
-  <a href="/addchore"> + Add Chore</a>
-  &nbsp;
-  <a href="/removechore"> - Remove Chore</a>
-  &nbsp;
-  <a href="/choredetail">Chore Details</a>
-  <br>
-  <br>
-  <br>
+  <div class="nav">
+
+    <br>
+    <br>
+    <a href="/dochore">Do Chore</a>
+    &nbsp; &nbsp;
+    <a href="/addchore"> + Add Chore</a>
+    &nbsp; &nbsp;
+    <a href="/removechore"> Remove Chore</a>
+    &nbsp; &nbsp;
+    <a href="/choredetail">Chore Details</a>
+    <br>
+    <br>
+    <br>
+
+  </div>
 
   {% for chore in chores %}
     {{ chore.render() | safe }}
